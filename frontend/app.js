@@ -80,7 +80,9 @@
     crop: "rice",
 
     predictionRunning: false,
-    backendHealthy: false
+    backendHealthy: false,
+    liveWeatherTimer: null,
+    liveWeatherRequestId: 0
   };
 
 
@@ -913,6 +915,97 @@
         lon,
         "Selected Location"
       );
+    }
+
+    clearTimeout(state.liveWeatherTimer);
+    state.liveWeatherTimer = setTimeout(
+      () => loadLiveWeather(lat, lon),
+      350
+    );
+  }
+
+
+  async function loadLiveWeather(latitude, longitude) {
+
+    const lat = num(latitude);
+    const lon = num(longitude);
+    const requestId = ++state.liveWeatherRequestId;
+    const button = $("liveWeatherRefresh");
+    const body = $("liveWeatherBody");
+
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+      return;
+    }
+
+    text("liveWeatherStatus", "Loading current conditions…");
+    text("liveWeatherMessage", "");
+    text("liveWeatherTemperature", "—");
+    text("liveWeatherHumidity", "—");
+    text("liveWeatherRain", "—");
+    text("liveWeatherWind", "—");
+    text("liveWeatherToday", "Waiting for weather data");
+    text("liveWeatherUpdated", `Requesting weather for ${lat.toFixed(2)}°, ${lon.toFixed(2)}°; location is rounded to 0.01°.`);
+    if (body) body.setAttribute("aria-busy", "true");
+    if (button) button.disabled = true;
+
+    const fmt = (value, digits = 0) => {
+      if (value == null || !Number.isFinite(Number(value))) return "—";
+      return Number(value).toFixed(digits);
+    };
+
+    try {
+      const params = new URLSearchParams({
+        latitude: lat.toFixed(2),
+        longitude: lon.toFixed(2)
+      });
+      const weather = await request(
+        `/weather/live?${params.toString()}`,
+        { headers: { Accept: "application/json" } },
+        12000
+      );
+      if (requestId !== state.liveWeatherRequestId) return;
+      const current = weather?.current || {};
+      const today = weather?.today || {};
+
+      text("liveWeatherTemperature", `${fmt(current.temperature_c, 1)} °C`);
+      text("liveWeatherHumidity", `${fmt(current.relative_humidity_pct)}%`);
+      text("liveWeatherRain", `${fmt(current.rain_mm, 1)} mm`);
+      text("liveWeatherWind", `${fmt(current.wind_speed_kmh, 1)} km/h`);
+
+      const high = fmt(today.temperature_max_c, 0);
+      const low = fmt(today.temperature_min_c, 0);
+      const chance = fmt(today.precipitation_probability_max_pct, 0);
+      const total = fmt(today.precipitation_sum_mm, 1);
+      text(
+        "liveWeatherToday",
+        `High ${high}°C · low ${low}°C · rain chance ${chance}% · forecast rain ${total} mm`
+      );
+
+      const observedAt = weather?.observed_at
+        ? ` · observation ${weather.observed_at} (${weather.timezone || "local time"})`
+        : "";
+      text("liveWeatherStatus", "Weather data available");
+      text(
+        "liveWeatherUpdated",
+        `Weather comes from Open-Meteo and is separate from the 2024-trained model; location rounded to 0.01°${observedAt}.`
+      );
+    } catch (weatherError) {
+      if (requestId !== state.liveWeatherRequestId) return;
+      text("liveWeatherStatus", "Weather unavailable");
+      text(
+        "liveWeatherToday",
+        "Live weather could not be loaded for this location."
+      );
+      text(
+        "liveWeatherMessage",
+        weatherError?.message || "Please try refreshing the weather data."
+      );
+      console.warn("Live weather request failed:", weatherError);
+    } finally {
+      if (requestId === state.liveWeatherRequestId) {
+        if (body) body.setAttribute("aria-busy", "false");
+        if (button) button.disabled = false;
+      }
     }
   }
 
@@ -4843,6 +4936,14 @@
 
     setupInputs();
 
+    $("liveWeatherRefresh")?.addEventListener(
+      "click",
+      () => {
+        const selected = inputs();
+        loadLiveWeather(selected.lat, selected.lon);
+      }
+    );
+
     setupForm();
 
     setupHorizons();
@@ -4881,6 +4982,8 @@
         "Default Location"
       );
     }
+
+    loadLiveWeather(initial.lat, initial.lon);
 
 
     health();
