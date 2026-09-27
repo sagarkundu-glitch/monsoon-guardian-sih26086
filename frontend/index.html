@@ -1,19 +1,3807 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monsoon Guardian</title>
-  <link rel="stylesheet" href="style.css">
+
+    <!-- =========================================================
+         MONSOON GUARDIAN
+         SIH 26086
+         Hyperlocal Monsoon Onset & Break Prediction System
+         ========================================================= -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#071525"
+    >
+
+    <meta
+        name="description"
+        content="Monsoon Guardian — hyperlocal rainfall intelligence, experimental monsoon onset and break prediction, agricultural decision support, and farmer-focused guidance."
+    >
+
+    <meta
+        name="author"
+        content="Monsoon Guardian"
+    >
+
+    <title>
+        Monsoon Guardian | Hyperlocal Monsoon Intelligence
+    </title>
+
+
+    <!-- =========================================================
+         LEAFLET MAP
+         ========================================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    >
+
+
+    <!-- =========================================================
+         APPLICATION CSS
+         ========================================================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
+
 <body>
-  <main class="container">
-    <h1>🌧️ Monsoon Guardian</h1>
-    <p>Hyperlocal Monsoon Onset & Break Prediction System</p>
-    <div class="card">
-      <h2>Project initialized</h2>
-      <p>Our real data and forecasting pipeline will be added step by step.</p>
-    </div>
-  </main>
+
+<div
+    class="app-shell"
+    id="appShell"
+>
+
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+
+    <header
+        class="site-header"
+        id="siteHeader"
+    >
+
+        <div class="header-inner">
+
+
+            <!-- BRAND -->
+
+            <a
+                href="#dashboard"
+                class="brand"
+                aria-label="Monsoon Guardian dashboard"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+
+                    <div class="brand-mark-inner">
+                        ◉
+                    </div>
+
+                </div>
+
+
+                <div class="brand-copy">
+
+                    <span class="brand-name">
+                        Monsoon Guardian
+                    </span>
+
+                    <span class="brand-tagline">
+                        HYPERLOCAL MONSOON INTELLIGENCE
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- DESKTOP NAV -->
+
+            <nav
+                class="main-nav"
+                id="mainNav"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="#dashboard"
+                    class="nav-link active"
+                    data-nav="dashboard"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="#predictions"
+                    class="nav-link"
+                    data-nav="predictions"
+                >
+                    Predictions
+                </a>
+
+                <a
+                    href="#intelligence"
+                    class="nav-link"
+                    data-nav="intelligence"
+                >
+                    Intelligence
+                </a>
+
+                <a
+                    href="#advisory"
+                    class="nav-link"
+                    data-nav="advisory"
+                >
+                    Advisory
+                </a>
+
+                <a
+                    href="#context"
+                    class="nav-link"
+                    data-nav="context"
+                >
+                    Data &amp; Models
+                </a>
+
+            </nav>
+
+
+            <!-- ENGINE STATUS -->
+
+            <div
+                class="engine-status"
+                id="engineStatus"
+                aria-live="polite"
+            >
+
+                <span class="engine-status-dot"></span>
+
+                <span id="engineStatusText">
+                    Checking engine...
+                </span>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button
+                type="button"
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open navigation"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN
+         ========================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =====================================================
+             HERO
+             ===================================================== -->
+
+        <section
+            class="hero-section"
+            id="dashboard"
+        >
+
+            <div class="hero-card">
+
+
+                <!-- HERO CONTENT -->
+
+                <div class="hero-content">
+
+                    <div class="hero-kicker">
+
+                        <span class="hero-kicker-dot"></span>
+
+                        <span>
+                            SMART INDIA HACKATHON 2026
+                        </span>
+
+                        <span class="hero-divider">
+                            |
+                        </span>
+
+                        <span>
+                            SIH26086
+                        </span>
+
+                    </div>
+
+
+                    <h1 class="hero-title">
+
+                        Hyperlocal
+
+                        <span>
+                            Monsoon Intelligence
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        A rainfall-driven intelligence platform for
+                        experimental hyperlocal monsoon onset and break
+                        probability analysis, combining gridded rainfall
+                        information with large-scale climate predictors.
+
+                    </p>
+
+
+                    <!-- HERO STATISTICS -->
+
+                    <div class="hero-stat-row">
+
+
+                        <div class="hero-stat">
+
+                            <div
+                                class="hero-stat-icon"
+                                aria-hidden="true"
+                            >
+                                +
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    0.25°
+                                </strong>
+
+                                <span>
+                                    Spatial Resolution
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <div
+                                class="hero-stat-icon"
+                                aria-hidden="true"
+                            >
+                                ◷
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    7 / 14 / 30
+                                </strong>
+
+                                <span>
+                                    Forecast Horizons
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <div
+                                class="hero-stat-icon"
+                                aria-hidden="true"
+                            >
+                                ◈
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    4 Signals
+                                </strong>
+
+                                <span>
+                                    Rainfall + Climate
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO VISUAL -->
+
+                <div
+                    class="hero-visual"
+                    aria-hidden="true"
+                >
+
+                    <div
+                        class="hero-orbit orbit-one"
+                    ></div>
+
+                    <div
+                        class="hero-orbit orbit-two"
+                    ></div>
+
+                    <div
+                        class="hero-orbit orbit-three"
+                    ></div>
+
+
+                    <div class="hero-globe">
+
+                        <div class="globe-grid"></div>
+
+                        <div class="globe-center">
+
+                            <span>
+                                ◉
+                            </span>
+
+                        </div>
+
+                        <i class="globe-point point-one"></i>
+                        <i class="globe-point point-two"></i>
+                        <i class="globe-point point-three"></i>
+                        <i class="globe-point point-four"></i>
+
+                    </div>
+
+
+                    <div class="hero-tag hero-tag-grid">
+
+                        <span></span>
+
+                        Rainfall Grid
+
+                    </div>
+
+
+                    <div class="hero-tag hero-tag-engine">
+
+                        <span></span>
+
+                        ML Engine Active
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HYPERLOCAL ANALYSIS
+             ===================================================== -->
+
+        <section
+            class="analysis-section"
+            id="analysis"
+        >
+
+
+            <!-- SECTION HEADER -->
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-kicker">
+                        HYPERLOCAL ANALYSIS
+                    </span>
+
+                    <h2 class="section-title">
+                        Select a location
+                    </h2>
+
+                </div>
+
+
+                <p class="section-description">
+
+                    Select a supported rainfall grid cell or enter
+                    coordinates manually to generate the experimental
+                    monsoon outlook.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- WORKSPACE -->
+
+            <div class="analysis-workspace">
+
+
+                <!-- =================================================
+                     MAP PANEL
+                     ================================================= -->
+
+                <section
+                    class="panel map-panel"
+                    aria-label="Hyperlocal prediction map"
+                >
+
+                    <div class="panel-header">
+
+                        <div class="panel-title-group">
+
+                            <div
+                                class="panel-icon blue-icon"
+                                aria-hidden="true"
+                            >
+                                ◎
+                            </div>
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    SPATIAL INTELLIGENCE
+                                </span>
+
+                                <h3 class="panel-title">
+                                    Prediction Grid
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="panel-status"
+                            id="gridStatus"
+                        >
+
+                            <span class="status-dot"></span>
+
+                            <span id="gridStatusText">
+                                Grid Enabled
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MAP WRAPPER -->
+
+                    <div
+                        class="map-wrapper"
+                        id="mapWrapper"
+                    >
+
+                        <div
+                            id="predictionMap"
+                            class="prediction-map"
+                            role="application"
+                            aria-label="Hyperlocal rainfall prediction map"
+                        ></div>
+
+
+                        <!-- STUDY REGION BADGE -->
+
+                        <div
+                            class="map-overlay map-region-badge"
+                            id="mapRegionBadge"
+                        >
+
+                            <span class="map-badge-dot"></span>
+
+                            Supported study region
+
+                        </div>
+
+
+                        <!-- MAP INSTRUCTION -->
+
+                        <div
+                            class="map-overlay map-instruction"
+                            id="mapInstruction"
+                        >
+
+                            Click a grid point to select a location
+
+                        </div>
+
+
+                        <!-- MAP LAYER CONTROL -->
+
+                        <div
+                            class="map-layer-control"
+                            aria-label="Map layers"
+                        >
+
+                            <span class="layer-title">
+                                MAP LAYER
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="layer-button active"
+                                data-layer="grid"
+                                aria-pressed="true"
+                            >
+                                Grid
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="layer-button"
+                                data-layer="rainfall"
+                                aria-pressed="false"
+                            >
+                                Rainfall
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="layer-button"
+                                data-layer="onset"
+                                aria-pressed="false"
+                            >
+                                Onset
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="layer-button"
+                                data-layer="break"
+                                aria-pressed="false"
+                            >
+                                Break
+                            </button>
+
+                        </div>
+
+
+                        <!-- MAP LOADING -->
+
+                        <div
+                            class="map-loading hidden"
+                            id="mapLoading"
+                            aria-live="polite"
+                        >
+
+                            <span class="map-loading-spinner"></span>
+
+                            <span>
+                                Loading grid...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MAP FOOTER -->
+
+                    <div class="map-footer">
+
+                        <div class="map-legend">
+
+                            <span class="legend-item">
+
+                                <i
+                                    class="legend-dot grid-dot"
+                                ></i>
+
+                                Available Grid
+
+                            </span>
+
+
+                            <span class="legend-item">
+
+                                <i
+                                    class="legend-dot selected-dot"
+                                ></i>
+
+                                Selected Grid
+
+                            </span>
+
+
+                            <span class="legend-item">
+
+                                <i
+                                    class="legend-line"
+                                ></i>
+
+                                Study Region
+
+                            </span>
+
+                        </div>
+
+
+                        <span class="map-source">
+                            IMD 0.25° rainfall grid
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     CONTROL PANEL
+                     ================================================= -->
+
+                <section
+                    class="panel controls-panel"
+                    aria-label="Prediction controls"
+                >
+
+                    <div class="panel-header">
+
+                        <div class="panel-title-group">
+
+                            <div
+                                class="panel-icon purple-icon"
+                                aria-hidden="true"
+                            >
+                                ⊕
+                            </div>
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    ANALYSIS CONTROLS
+                                </span>
+
+                                <h3 class="panel-title">
+                                    Prediction Setup
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        class="prediction-form"
+                        id="predictionForm"
+                        novalidate
+                    >
+
+
+                        <!-- LATITUDE -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="latitude"
+                                class="form-label"
+                            >
+                                Latitude
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span
+                                    class="input-icon"
+                                    aria-hidden="true"
+                                >
+                                    ◎
+                                </span>
+
+
+                                <input
+                                    type="number"
+                                    id="latitude"
+                                    name="latitude"
+                                    class="form-input"
+                                    value="22.50"
+                                    placeholder="22.50"
+                                    min="-90"
+                                    max="90"
+                                    step="0.01"
+                                    inputmode="decimal"
+                                    required
+                                >
+
+
+                                <span
+                                    class="input-unit"
+                                >
+                                    °N
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LONGITUDE -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="longitude"
+                                class="form-label"
+                            >
+                                Longitude
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span
+                                    class="input-icon"
+                                    aria-hidden="true"
+                                >
+                                    ◎
+                                </span>
+
+
+                                <input
+                                    type="number"
+                                    id="longitude"
+                                    name="longitude"
+                                    class="form-input"
+                                    value="88.00"
+                                    placeholder="88.00"
+                                    min="-180"
+                                    max="180"
+                                    step="0.01"
+                                    inputmode="decimal"
+                                    required
+                                >
+
+
+                                <span
+                                    class="input-unit"
+                                >
+                                    °E
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DATE -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="date"
+                                class="form-label"
+                            >
+                                Prediction Date
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span
+                                    class="input-icon"
+                                    aria-hidden="true"
+                                >
+                                    □
+                                </span>
+
+
+                                <input
+                                    type="date"
+                                    id="date"
+                                    name="date"
+                                    class="form-input"
+                                    value="2024-10-01"
+                                    min="2024-01-30"
+                                    max="2024-12-01"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FORECAST HORIZON -->
+
+                        <div class="form-group">
+
+                            <span class="form-label">
+                                Forecast Horizon
+                            </span>
+
+
+                            <div
+                                class="horizon-selector"
+                                id="horizonSelector"
+                                role="group"
+                                aria-label="Forecast horizon"
+                            >
+
+                                <button
+                                    type="button"
+                                    class="horizon-button active"
+                                    data-horizon="7"
+                                    aria-pressed="true"
+                                >
+                                    7D
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="horizon-button"
+                                    data-horizon="14"
+                                    aria-pressed="false"
+                                >
+                                    14D
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="horizon-button"
+                                    data-horizon="30"
+                                    aria-pressed="false"
+                                >
+                                    30D
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DEMO MODE -->
+
+                        <div class="demo-control">
+
+                            <div>
+
+                                <span class="form-label">
+                                    Demonstration
+                                </span>
+
+                                <span class="demo-control-description">
+                                    Test predefined analysis scenarios
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="demo-button"
+                                id="demoModeButton"
+                            >
+                                Demo Mode
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- ANALYZE BUTTON -->
+
+                        <div class="button-group">
+
+                            <button
+                                type="submit"
+                                id="predictButton"
+                                class="primary-button"
+                            >
+
+                                <span
+                                    class="button-icon"
+                                    aria-hidden="true"
+                                >
+                                    ✦
+                                </span>
+
+                                <span>
+                                    Analyze Monsoon
+                                </span>
+
+                                <span
+                                    class="button-arrow"
+                                    aria-hidden="true"
+                                >
+                                    →
+                                </span>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-note">
+
+                            <span aria-hidden="true">
+                                ⓘ
+                            </span>
+
+                            Predictions are based on the selected
+                            grid location and analysis date.
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOCATION SUMMARY
+                 ================================================= -->
+
+            <div
+                class="selection-summary"
+                id="selectionSummary"
+            >
+
+                <div class="selection-item">
+
+                    <div
+                        class="selection-icon blue-icon"
+                        aria-hidden="true"
+                    >
+                        ◎
+                    </div>
+
+                    <div>
+
+                        <span class="selection-label">
+                            SELECTED GRID LOCATION
+                        </span>
+
+                        <strong id="gridLocation">
+                            22.50°N, 88.00°E
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="selection-divider"></div>
+
+
+                <div class="selection-item">
+
+                    <div
+                        class="selection-icon purple-icon"
+                        aria-hidden="true"
+                    >
+                        □
+                    </div>
+
+                    <div>
+
+                        <span class="selection-label">
+                            ANALYSIS DATE
+                        </span>
+
+                        <strong id="analysisDate">
+                            01 Oct 2024
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="selection-spacer"></div>
+
+
+                <div
+                    class="selection-state"
+                    id="analysisState"
+                >
+
+                    <span class="selection-state-dot"></span>
+
+                    <span id="analysisStateText">
+                        Analysis Ready
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GLOBAL LOADING
+             ===================================================== -->
+
+        <section
+            class="loading-panel hidden"
+            id="loading"
+            aria-live="polite"
+            aria-busy="true"
+        >
+
+            <div class="loading-spinner"></div>
+
+            <div>
+
+                <strong>
+                    Generating monsoon outlook
+                </strong>
+
+                <span>
+                    Processing rainfall and climate signals...
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ERROR
+             ===================================================== -->
+
+        <section
+            class="error-panel hidden"
+            id="error"
+            role="alert"
+            aria-live="assertive"
+        ></section>
+
+
+
+        <!-- =====================================================
+             RESULTS
+             ===================================================== -->
+
+        <section
+            class="results-section hidden"
+            id="results"
+        >
+
+
+            <!-- =================================================
+                 RESULTS HEADER
+                 ================================================= -->
+
+            <div
+                class="results-header"
+                id="predictions"
+            >
+
+                <div>
+
+                    <span class="section-kicker">
+                        FORECAST INTELLIGENCE
+                    </span>
+
+                    <h2 class="section-title">
+                        Monsoon Outlook
+                    </h2>
+
+                    <p class="results-subtitle">
+
+                        Experimental rainfall-derived probability
+                        signals across multiple forecast horizons.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="forecast-badge"
+                    id="forecastBadge"
+                >
+
+                    <span aria-hidden="true">
+                        ◷
+                    </span>
+
+                    <div>
+
+                        <small>
+                            FORECAST HORIZONS
+                        </small>
+
+                        <strong>
+                            7 · 14 · 30 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CURRENT ANALYSIS
+                 ================================================= -->
+
+            <div class="current-analysis-card">
+
+                <div class="current-analysis-marker"></div>
+
+
+                <div class="current-analysis-item">
+
+                    <span>
+                        LOCATION
+                    </span>
+
+                    <strong id="currentLocationText">
+                        Selected grid
+                    </strong>
+
+                </div>
+
+
+                <div class="current-analysis-divider"></div>
+
+
+                <div class="current-analysis-item">
+
+                    <span>
+                        ANALYSIS DATE
+                    </span>
+
+                    <strong id="currentDateText">
+                        Selected date
+                    </strong>
+
+                </div>
+
+
+                <div class="current-analysis-divider"></div>
+
+
+                <div class="current-analysis-item">
+
+                    <span>
+                        MODEL TYPE
+                    </span>
+
+                    <strong id="modelTypeText">
+                        Rainfall + Climate
+                    </strong>
+
+                </div>
+
+
+                <div class="current-analysis-divider"></div>
+
+
+                <div class="current-analysis-item">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="modelStatusText">
+                        Ready
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RISK OVERVIEW
+                 ================================================= -->
+
+            <section
+                class="risk-overview"
+                id="intelligence"
+                aria-labelledby="riskOverviewTitle"
+            >
+
+                <div class="subsection-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            MONSOON INTELLIGENCE
+                        </span>
+
+                        <h3
+                            id="riskOverviewTitle"
+                        >
+                            Risk Overview
+                        </h3>
+
+                    </div>
+
+                    <span class="subsection-note">
+                        Experimental model signals
+                    </span>
+
+                </div>
+
+
+                <div class="risk-overview-grid">
+
+
+                    <!-- ONSET -->
+
+                    <article
+                        class="risk-overview-card onset-overview"
+                        id="overviewOnsetCard"
+                    >
+
+                        <div class="risk-overview-top">
+
+                            <span
+                                class="risk-icon"
+                                aria-hidden="true"
+                            >
+                                ↑
+                            </span>
+
+                            <span>
+                                ONSET
+                            </span>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewOnset"
+                        >
+                            —
+                        </strong>
+
+
+                        <small>
+                            7-day probability
+                        </small>
+
+
+                        <div
+                            class="mini-progress"
+                            aria-hidden="true"
+                        >
+
+                            <div
+                                id="overviewOnsetBar"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="risk-overview-footer">
+
+                            <span>
+                                Signal
+                            </span>
+
+                            <strong
+                                id="overviewOnsetSignal"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BREAK -->
+
+                    <article
+                        class="risk-overview-card break-overview"
+                        id="overviewBreakCard"
+                    >
+
+                        <div class="risk-overview-top">
+
+                            <span
+                                class="risk-icon"
+                                aria-hidden="true"
+                            >
+                                ↓
+                            </span>
+
+                            <span>
+                                BREAK
+                            </span>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewBreak"
+                        >
+                            —
+                        </strong>
+
+
+                        <small>
+                            7-day probability
+                        </small>
+
+
+                        <div
+                            class="mini-progress"
+                            aria-hidden="true"
+                        >
+
+                            <div
+                                id="overviewBreakBar"
+                                style="width:0%"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="risk-overview-footer">
+
+                            <span>
+                                Signal
+                            </span>
+
+                            <strong
+                                id="overviewBreakSignal"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- OUTLOOK -->
+
+                    <article
+                        class="risk-overview-card overall-overview"
+                        id="overviewOverallCard"
+                    >
+
+                        <div class="risk-overview-top">
+
+                            <span
+                                class="risk-icon"
+                                aria-hidden="true"
+                            >
+                                ◉
+                            </span>
+
+                            <span>
+                                OUTLOOK
+                            </span>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewStatus"
+                        >
+                            Awaiting
+                        </strong>
+
+
+                        <small
+                            id="overviewStatusCaption"
+                        >
+                            Current model interpretation
+                        </small>
+
+
+                        <div class="overview-status-line">
+
+                            <span
+                                id="overviewStatusDot"
+                                class="status-neutral"
+                            ></span>
+
+                            <span
+                                id="overviewStatusText"
+                            >
+                                Run analysis
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SIGNAL SNAPSHOT
+                 ================================================= -->
+
+            <section
+                class="signal-snapshot-section"
+                id="signalSnapshot"
+            >
+
+                <div class="subsection-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            MULTI-HORIZON SIGNALS
+                        </span>
+
+                        <h3>
+                            Forecast progression
+                        </h3>
+
+                    </div>
+
+                    <span class="subsection-note">
+                        7 · 14 · 30 days
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="signal-snapshot-grid"
+                    id="signalSnapshotGrid"
+                >
+
+
+                    <!-- ONSET 7 -->
+
+                    <article
+                        class="signal-snapshot-card onset-snapshot"
+                        data-type="onset"
+                        data-horizon="7_day"
+                    >
+
+                        <span class="snapshot-type">
+                            ONSET
+                        </span>
+
+                        <strong>
+                            7 Days
+                        </strong>
+
+                        <span
+                            id="snapshotOnset7"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+
+                    <!-- ONSET 14 -->
+
+                    <article
+                        class="signal-snapshot-card onset-snapshot"
+                        data-type="onset"
+                        data-horizon="14_day"
+                    >
+
+                        <span class="snapshot-type">
+                            ONSET
+                        </span>
+
+                        <strong>
+                            14 Days
+                        </strong>
+
+                        <span
+                            id="snapshotOnset14"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+
+                    <!-- ONSET 30 -->
+
+                    <article
+                        class="signal-snapshot-card onset-snapshot"
+                        data-type="onset"
+                        data-horizon="30_day"
+                    >
+
+                        <span class="snapshot-type">
+                            ONSET
+                        </span>
+
+                        <strong>
+                            30 Days
+                        </strong>
+
+                        <span
+                            id="snapshotOnset30"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+
+                    <!-- BREAK 7 -->
+
+                    <article
+                        class="signal-snapshot-card break-snapshot"
+                        data-type="break"
+                        data-horizon="7_day"
+                    >
+
+                        <span class="snapshot-type">
+                            BREAK
+                        </span>
+
+                        <strong>
+                            7 Days
+                        </strong>
+
+                        <span
+                            id="snapshotBreak7"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+
+                    <!-- BREAK 14 -->
+
+                    <article
+                        class="signal-snapshot-card break-snapshot"
+                        data-type="break"
+                        data-horizon="14_day"
+                    >
+
+                        <span class="snapshot-type">
+                            BREAK
+                        </span>
+
+                        <strong>
+                            14 Days
+                        </strong>
+
+                        <span
+                            id="snapshotBreak14"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+
+                    <!-- BREAK 30 -->
+
+                    <article
+                        class="signal-snapshot-card break-snapshot"
+                        data-type="break"
+                        data-horizon="30_day"
+                    >
+
+                        <span class="snapshot-type">
+                            BREAK
+                        </span>
+
+                        <strong>
+                            30 Days
+                        </strong>
+
+                        <span
+                            id="snapshotBreak30"
+                            class="snapshot-value"
+                        >
+                            —
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MONSOON ONSET
+                 ================================================= -->
+
+            <section
+                class="prediction-section onset-section"
+                id="onsetSection"
+                aria-labelledby="onsetTitle"
+            >
+
+                <div class="prediction-section-header">
+
+                    <div class="prediction-section-heading">
+
+                        <div
+                            class="prediction-section-icon onset-icon"
+                            aria-hidden="true"
+                        >
+                            ↑
+                        </div>
+
+                        <div>
+
+                            <span class="prediction-section-label">
+                                RAINFALL TRANSITION
+                            </span>
+
+                            <h3
+                                class="prediction-section-title"
+                                id="onsetTitle"
+                            >
+                                Monsoon Onset
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="prediction-section-note">
+
+                        Experimental probability of the
+                        rainfall-derived onset target being met.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="prediction-grid"
+                    id="onsetCards"
+                ></div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MONSOON BREAK
+                 ================================================= -->
+
+            <section
+                class="prediction-section break-section"
+                id="breakSection"
+                aria-labelledby="breakTitle"
+            >
+
+                <div class="prediction-section-header">
+
+                    <div class="prediction-section-heading">
+
+                        <div
+                            class="prediction-section-icon break-icon"
+                            aria-hidden="true"
+                        >
+                            ↓
+                        </div>
+
+                        <div>
+
+                            <span class="prediction-section-label">
+                                DRY SPELL RISK
+                            </span>
+
+                            <h3
+                                class="prediction-section-title"
+                                id="breakTitle"
+                            >
+                                Monsoon Break
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="prediction-section-note">
+
+                        Experimental probability of the
+                        rainfall-derived break target being met.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="prediction-grid"
+                    id="breakCards"
+                ></div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RAINFALL INTELLIGENCE
+                 ================================================= -->
+
+            <section
+                class="rainfall-intelligence-section"
+                id="rainfallIntelligence"
+            >
+
+                <div class="section-header compact-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            RAINFALL INTELLIGENCE
+                        </span>
+
+                        <h2 class="section-title">
+                            Selected-grid rainfall context
+                        </h2>
+
+                    </div>
+
+
+                    <p class="section-description">
+                        Recent rainfall statistics and local
+                        precipitation context for the selected grid.
+                    </p>
+
+                </div>
+
+
+                <!-- RAINFALL SUMMARY -->
+
+                <div class="rainfall-summary-grid">
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            LAST 7 DAYS
+                        </span>
+
+                        <strong id="rainfall7Value">
+                            —
+                        </strong>
+
+                        <small>
+                            mm rainfall
+                        </small>
+
+                    </article>
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            LAST 14 DAYS
+                        </span>
+
+                        <strong id="rainfall14Value">
+                            —
+                        </strong>
+
+                        <small>
+                            mm rainfall
+                        </small>
+
+                    </article>
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            LAST 30 DAYS
+                        </span>
+
+                        <strong id="rainfall30Value">
+                            —
+                        </strong>
+
+                        <small>
+                            mm rainfall
+                        </small>
+
+                    </article>
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            RAINY DAYS
+                        </span>
+
+                        <strong id="rainyDaysValue">
+                            —
+                        </strong>
+
+                        <small>
+                            recent period
+                        </small>
+
+                    </article>
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            DRY DAYS
+                        </span>
+
+                        <strong id="dryDaysValue">
+                            —
+                        </strong>
+
+                        <small>
+                            recent period
+                        </small>
+
+                    </article>
+
+
+                    <article class="rainfall-stat-card">
+
+                        <span>
+                            DRY SPELL
+                        </span>
+
+                        <strong id="drySpellValue">
+                            —
+                        </strong>
+
+                        <small>
+                            consecutive days
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <!-- RAINFALL CHART -->
+
+                <article class="rainfall-chart-card">
+
+                    <div class="chart-card-header">
+
+                        <div>
+
+                            <span>
+                                RAINFALL HISTORY
+                            </span>
+
+                            <h3>
+                                Recent precipitation pattern
+                            </h3>
+
+                        </div>
+
+                        <span
+                            class="chart-status"
+                            id="rainfallChartStatus"
+                        >
+                            Awaiting analysis
+                        </span>
+
+                    </div>
+
+
+                    <div class="chart-wrapper">
+
+                        <canvas
+                            id="rainfallChart"
+                            aria-label="Recent rainfall history chart"
+                        ></canvas>
+
+                        <div
+                            class="chart-empty"
+                            id="rainfallChartEmpty"
+                        >
+                            Run an analysis to display rainfall history.
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 HEAVY RAINFALL
+                 ================================================= -->
+
+            <section
+                class="planned-section"
+                id="heavyRainfall"
+            >
+
+                <div class="planned-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            EXTREME RAINFALL
+                        </span>
+
+                        <h3>
+                            Heavy Rainfall Intelligence
+                        </h3>
+
+                    </div>
+
+                    <span
+                        class="planned-badge"
+                        id="heavyRainfallStatus"
+                    >
+                        EXTENSION MODULE
+                    </span>
+
+                </div>
+
+
+                <div class="planned-content">
+
+                    <div class="planned-icon">
+                        ☁
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Heavy downpour risk layer
+                        </strong>
+
+                        <p>
+                            The SIH problem statement calls for
+                            localized heavy-rainfall risk visualization.
+                            This component is kept ready for integration
+                            with a validated heavy-rainfall prediction
+                            model.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="planned-status"
+                        id="heavyRainfallModuleStatus"
+                    >
+                        Planned
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 AGRICULTURAL ADVISORY
+                 ================================================= -->
+
+            <section
+                class="advisory-section"
+                id="advisory"
+                aria-labelledby="advisoryTitle"
+            >
+
+
+                <div class="section-header advisory-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            DECISION SUPPORT
+                        </span>
+
+                        <h2
+                            class="section-title"
+                            id="advisoryTitle"
+                        >
+                            Agricultural Advisory
+                        </h2>
+
+                        <p class="section-description">
+
+                            Translate rainfall-derived signals into
+                            understandable crop-aware guidance for farmers
+                            and agricultural extension teams.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- LANGUAGE -->
+
+                    <div class="language-selector">
+
+                        <label
+                            for="languageSelect"
+                        >
+                            LANGUAGE
+                        </label>
+
+                        <select
+                            id="languageSelect"
+                            name="language"
+                        >
+
+                            <option value="en">
+                                English
+                            </option>
+
+                            <option value="bn">
+                                বাংলা
+                            </option>
+
+                            <option value="hi">
+                                हिंदी
+                            </option>
+
+                            <option value="or">
+                                ଓଡ଼ିଆ
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="advisory-grid">
+
+
+                    <!-- ADVISORY MAIN -->
+
+                    <article
+                        class="advisory-main-card"
+                        id="advisoryMainCard"
+                    >
+
+                        <div class="advisory-card-header">
+
+                            <div>
+
+                                <span>
+                                    CURRENT ADVISORY
+                                </span>
+
+                                <h3
+                                    id="advisoryHeading"
+                                >
+                                    Awaiting prediction
+                                </h3>
+
+                            </div>
+
+
+                            <div
+                                class="advisory-severity"
+                                id="advisorySeverity"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="advisory-location">
+
+                            <span>
+                                LOCATION
+                            </span>
+
+                            <strong
+                                id="advisoryLocation"
+                            >
+                                Select a grid location
+                            </strong>
+
+                        </div>
+
+
+                        <div class="advisory-message">
+
+                            <div
+                                class="advisory-message-icon"
+                                aria-hidden="true"
+                            >
+                                🌾
+                            </div>
+
+                            <p id="advisoryMessage">
+
+                                Run a monsoon analysis to generate
+                                the experimental agricultural advisory.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="advisory-actions">
+
+                            <span class="advisory-actions-title">
+                                RECOMMENDED ACTIONS
+                            </span>
+
+
+                            <ul id="advisoryActions">
+
+                                <li>
+                                    Awaiting model analysis
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+
+                        <div class="advisory-disclaimer">
+
+                            Experimental decision support.
+                            Not an official weather or agricultural warning.
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- CROP SETTINGS -->
+
+                    <aside
+                        class="advisory-side-card"
+                        aria-label="Farmer crop context"
+                    >
+
+                        <div class="side-card-heading">
+
+                            <span
+                                class="side-card-icon"
+                                aria-hidden="true"
+                            >
+                                🌱
+                            </span>
+
+                            <div>
+
+                                <span>
+                                    FARMER PROFILE
+                                </span>
+
+                                <h3>
+                                    Crop Context
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="crop-field">
+
+                            <label
+                                for="cropSelect"
+                            >
+                                CROP
+                            </label>
+
+                            <select
+                                id="cropSelect"
+                                name="crop"
+                            >
+
+                                <option value="rice">
+                                    Rice
+                                </option>
+
+                                <option value="maize">
+                                    Maize
+                                </option>
+
+                                <option value="pulses">
+                                    Pulses
+                                </option>
+
+                                <option value="groundnut">
+                                    Groundnut
+                                </option>
+
+                                <option value="cotton">
+                                    Cotton
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="crop-field">
+
+                            <label
+                                for="farmerLocation"
+                            >
+                                REGION
+                            </label>
+
+                            <input
+                                type="text"
+                                id="farmerLocation"
+                                name="region"
+                                placeholder="Selected grid / block"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="generateAdvisoryButton"
+                        >
+
+                            Generate Advisory
+
+                            <span aria-hidden="true">
+                                →
+                            </span>
+
+                        </button>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FARMER MODE
+                 ================================================= -->
+
+            <section
+                class="farmer-mode-section"
+                id="farmerSection"
+            >
+
+                <div class="farmer-mode-card">
+
+
+                    <div class="farmer-mode-visual">
+
+                        <div class="farmer-circle">
+
+                            <span>
+                                🌾
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="farmer-mode-content">
+
+                        <span class="section-kicker">
+                            FIELD-READY INTERFACE
+                        </span>
+
+                        <h2>
+                            Farmer Mode
+                        </h2>
+
+                        <p>
+
+                            A simplified mobile-first experience designed
+                            to translate forecast information into
+                            understandable field guidance.
+
+                        </p>
+
+
+                        <div class="farmer-feature-row">
+
+                            <span>
+                                ✓ Simple alerts
+                            </span>
+
+                            <span>
+                                ✓ Regional languages
+                            </span>
+
+                            <span>
+                                ✓ Crop-aware guidance
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="farmer-mode-button"
+                        id="farmerModeButton"
+                    >
+
+                        Open Farmer Mode
+
+                        <span aria-hidden="true">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CLIMATE INTELLIGENCE
+                 ================================================= -->
+
+            <section
+                class="context-section"
+                id="context"
+                aria-labelledby="climateTitle"
+            >
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            DATA FOUNDATION
+                        </span>
+
+                        <h2
+                            class="section-title"
+                            id="climateTitle"
+                        >
+                            Climate Intelligence
+                        </h2>
+
+                    </div>
+
+
+                    <p class="section-description">
+
+                        Large-scale climate indicators combined with
+                        localized rainfall information.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="context-grid">
+
+
+                    <!-- IMD RAINFALL -->
+
+                    <article
+                        class="context-card rainfall-context-card"
+                    >
+
+                        <div class="context-card-top">
+
+                            <div
+                                class="context-icon blue-icon"
+                                aria-hidden="true"
+                            >
+                                ◌
+                            </div>
+
+                            <span>
+                                01
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            IMD Rainfall
+                        </h3>
+
+                        <p>
+
+                            0.25° daily gridded rainfall provides
+                            the core spatial precipitation signal.
+
+                        </p>
+
+
+                        <div class="context-value">
+
+                            <strong>
+                                0.25°
+                            </strong>
+
+                            <span>
+                                GRID
+                            </span>
+
+                        </div>
+
+                        <small>
+                            SPATIAL RAINFALL
+                        </small>
+
+                    </article>
+
+
+
+                    <!-- ENSO -->
+
+                    <article
+                        class="context-card"
+                        id="ensoCard"
+                    >
+
+                        <div class="context-card-top">
+
+                            <div
+                                class="context-icon cyan-icon"
+                                aria-hidden="true"
+                            >
+                                ≋
+                            </div>
+
+                            <span>
+                                02
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            ENSO
+                        </h3>
+
+                        <p>
+
+                            MEI climate indicator representing
+                            large-scale Pacific variability.
+
+                        </p>
+
+
+                        <div class="climate-reading">
+
+                            <span>
+                                MEI
+                            </span>
+
+                            <strong
+                                id="ensoValue"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                        <small
+                            id="ensoStatus"
+                        >
+                            PACIFIC CLIMATE SIGNAL
+                        </small>
+
+                    </article>
+
+
+
+                    <!-- IOD -->
+
+                    <article
+                        class="context-card"
+                        id="iodCard"
+                    >
+
+                        <div class="context-card-top">
+
+                            <div
+                                class="context-icon purple-icon"
+                                aria-hidden="true"
+                            >
+                                ◉
+                            </div>
+
+                            <span>
+                                03
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            IOD
+                        </h3>
+
+                        <p>
+
+                            DMI climate indicator representing
+                            Indian Ocean variability.
+
+                        </p>
+
+
+                        <div class="climate-reading">
+
+                            <span>
+                                DMI
+                            </span>
+
+                            <strong
+                                id="iodValue"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                        <small
+                            id="iodStatus"
+                        >
+                            INDIAN OCEAN SIGNAL
+                        </small>
+
+                    </article>
+
+
+
+                    <!-- MJO -->
+
+                    <article
+                        class="context-card"
+                        id="mjoCard"
+                    >
+
+                        <div class="context-card-top">
+
+                            <div
+                                class="context-icon orange-icon"
+                                aria-hidden="true"
+                            >
+                                ◉
+                            </div>
+
+                            <span>
+                                04
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            MJO
+                        </h3>
+
+                        <p>
+
+                            RMM1 and RMM2 indicators describing
+                            Madden-Julian Oscillation activity.
+
+                        </p>
+
+
+                        <div class="climate-reading">
+
+                            <span>
+                                PHASE
+                            </span>
+
+                            <strong
+                                id="mjoValue"
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+                        <small
+                            id="mjoStatus"
+                        >
+                            INTRASEASONAL SIGNAL
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- MODEL PIPELINE -->
+
+                <div class="model-pipeline-card">
+
+                    <div
+                        class="pipeline-icon"
+                        aria-hidden="true"
+                    >
+                        ⚙
+                    </div>
+
+
+                    <div class="pipeline-copy">
+
+                        <span>
+                            MODEL PIPELINE
+                        </span>
+
+                        <strong>
+
+                            Rainfall features + climate predictors
+                            → machine learning models
+                            → multi-horizon signals
+
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="pipeline-flow"
+                        aria-label="Prediction pipeline"
+                    >
+
+                        <span>
+                            Rainfall
+                        </span>
+
+                        <i>→</i>
+
+                        <span>
+                            Features
+                        </span>
+
+                        <i>→</i>
+
+                        <span>
+                            ENSO
+                        </span>
+
+                        <i>+</i>
+
+                        <span>
+                            IOD
+                        </span>
+
+                        <i>+</i>
+
+                        <span>
+                            MJO
+                        </span>
+
+                        <i>→</i>
+
+                        <span>
+                            ML
+                        </span>
+
+                        <i>→</i>
+
+                        <span>
+                            Outlook
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MODEL PERFORMANCE
+                 ================================================= -->
+
+            <section
+                class="model-performance-section"
+                id="modelPerformance"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            MODEL EVALUATION
+                        </span>
+
+                        <h2 class="section-title">
+                            Development performance
+                        </h2>
+
+                    </div>
+
+
+                    <p class="section-description">
+
+                        Prototype evaluation metrics from the current
+                        development dataset.
+
+                    </p>
+
+                </div>
+
+
+                <div class="performance-grid">
+
+                    <article class="performance-card">
+
+                        <span>
+                            ONSET 7D
+                        </span>
+
+                        <strong id="metricOnset7Accuracy">
+                            71.5%
+                        </strong>
+
+                        <small>
+                            Accuracy
+                        </small>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <span>
+                            ONSET 14D
+                        </span>
+
+                        <strong id="metricOnset14Auc">
+                            0.875
+                        </strong>
+
+                        <small>
+                            ROC-AUC
+                        </small>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <span>
+                            ONSET 30D
+                        </span>
+
+                        <strong id="metricOnset30Auc">
+                            0.914
+                        </strong>
+
+                        <small>
+                            ROC-AUC
+                        </small>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <span>
+                            BREAK 7D
+                        </span>
+
+                        <strong id="metricBreak7Auc">
+                            0.817
+                        </strong>
+
+                        <small>
+                            ROC-AUC
+                        </small>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <span>
+                            BREAK 14D
+                        </span>
+
+                        <strong id="metricBreak14Auc">
+                            0.847
+                        </strong>
+
+                        <small>
+                            ROC-AUC
+                        </small>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <span>
+                            BREAK 30D
+                        </span>
+
+                        <strong id="metricBreak30Auc">
+                            0.816
+                        </strong>
+
+                        <small>
+                            ROC-AUC
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <div class="performance-note">
+
+                    Prototype evaluation using the current
+                    rainfall-derived development dataset.
+                    These metrics should not be interpreted as
+                    operational forecast validation.
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MODEL TRANSPARENCY
+                 ================================================= -->
+
+            <section
+                class="model-section"
+                id="modelTransparency"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            MODEL TRANSPARENCY
+                        </span>
+
+                        <h2 class="section-title">
+                            How the prediction works
+                        </h2>
+
+                    </div>
+
+                    <p class="section-description">
+
+                        A transparent view of the data-processing and
+                        prediction pipeline.
+
+                    </p>
+
+                </div>
+
+
+                <!-- PROCESS FLOW -->
+
+                <div class="model-flow">
+
+
+                    <div class="model-flow-step">
+
+                        <span>
+                            01
+                        </span>
+
+                        <strong>
+                            Rainfall
+                        </strong>
+
+                        <small>
+                            IMD gridded data
+                        </small>
+
+                    </div>
+
+
+                    <div class="model-flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="model-flow-step">
+
+                        <span>
+                            02
+                        </span>
+
+                        <strong>
+                            Features
+                        </strong>
+
+                        <small>
+                            Rainfall statistics
+                        </small>
+
+                    </div>
+
+
+                    <div class="model-flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="model-flow-step climate-step">
+
+                        <span>
+                            03
+                        </span>
+
+                        <strong>
+                            Climate
+                        </strong>
+
+                        <small>
+                            ENSO · IOD · MJO
+                        </small>
+
+                    </div>
+
+
+                    <div class="model-flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="model-flow-step">
+
+                        <span>
+                            04
+                        </span>
+
+                        <strong>
+                            ML Models
+                        </strong>
+
+                        <small>
+                            Multi-horizon Random Forest
+                        </small>
+
+                    </div>
+
+
+                    <div class="model-flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="model-flow-step output-step">
+
+                        <span>
+                            05
+                        </span>
+
+                        <strong>
+                            Outlook
+                        </strong>
+
+                        <small>
+                            Risk + advisory
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MODEL DRIVERS -->
+
+                <div class="model-driver-card">
+
+                    <div class="model-driver-header">
+
+                        <div>
+
+                            <span>
+                                MODEL INPUTS
+                            </span>
+
+                            <h3>
+                                Prediction drivers
+                            </h3>
+
+                        </div>
+
+                        <span
+                            id="driverStatus"
+                            class="driver-status"
+                        >
+                            Experimental
+                        </span>
+
+                    </div>
+
+
+                    <div class="driver-grid">
+
+
+                        <div class="driver-item">
+
+                            <span>
+                                Rainfall history
+                            </span>
+
+                            <div class="driver-bar">
+                                <div
+                                    id="driverRainfall"
+                                    style="width:75%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="driver-item">
+
+                            <span>
+                                Dry-spell behaviour
+                            </span>
+
+                            <div class="driver-bar">
+                                <div
+                                    id="driverDrySpell"
+                                    style="width:55%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="driver-item">
+
+                            <span>
+                                ENSO
+                            </span>
+
+                            <div class="driver-bar">
+                                <div
+                                    id="driverEnso"
+                                    style="width:35%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="driver-item">
+
+                            <span>
+                                IOD
+                            </span>
+
+                            <div class="driver-bar">
+                                <div
+                                    id="driverIod"
+                                    style="width:30%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="driver-item">
+
+                            <span>
+                                MJO
+                            </span>
+
+                            <div class="driver-bar">
+                                <div
+                                    id="driverMjo"
+                                    style="width:25%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="model-driver-note">
+
+                        Driver visualization is an explanatory interface.
+                        Per-prediction feature attribution requires
+                        validated model explanation data.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PLATFORM CAPABILITIES
+                 ================================================= -->
+
+            <section
+                class="capabilities-section"
+                id="capabilities"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            PLATFORM CAPABILITIES
+                        </span>
+
+                        <h2 class="section-title">
+                            From forecast to action
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="capabilities-grid">
+
+
+                    <article class="capability-card">
+
+                        <span class="capability-number">
+                            01
+                        </span>
+
+                        <div class="capability-icon">
+                            ◎
+                        </div>
+
+                        <h3>
+                            Hyperlocal Mapping
+                        </h3>
+
+                        <p>
+
+                            Explore rainfall-grid locations and identify
+                            spatial differences in rainfall-derived
+                            monsoon conditions.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="capability-card">
+
+                        <span class="capability-number">
+                            02
+                        </span>
+
+                        <div class="capability-icon">
+                            ◷
+                        </div>
+
+                        <h3>
+                            Multi-Horizon Forecast
+                        </h3>
+
+                        <p>
+
+                            Examine experimental onset and break
+                            probabilities across 7, 14 and 30 days.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="capability-card">
+
+                        <span class="capability-number">
+                            03
+                        </span>
+
+                        <div class="capability-icon">
+                            ◉
+                        </div>
+
+                        <h3>
+                            Climate Intelligence
+                        </h3>
+
+                        <p>
+
+                            Incorporate ENSO, IOD and MJO indicators
+                            alongside localized rainfall information.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="capability-card">
+
+                        <span class="capability-number">
+                            04
+                        </span>
+
+                        <div class="capability-icon">
+                            🌾
+                        </div>
+
+                        <h3>
+                            Agricultural Decisions
+                        </h3>
+
+                        <p>
+
+                            Translate experimental rainfall-derived
+                            signals into understandable field-level
+                            decision support.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DEMO MODE
+                 ================================================= -->
+
+            <section
+                class="demo-section hidden"
+                id="demoSection"
+            >
+
+                <div class="demo-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            PRESENTATION MODE
+                        </span>
+
+                        <h2 class="section-title">
+                            Demo Scenarios
+                        </h2>
+
+                        <p class="section-description">
+
+                            Predefined scenarios for controlled
+                            demonstrations of the user interface.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="demo-close-button"
+                        id="closeDemoButton"
+                    >
+                        Close
+                    </button>
+
+                </div>
+
+
+                <div class="demo-grid">
+
+
+                    <button
+                        type="button"
+                        class="demo-scenario"
+                        data-demo="onset"
+                    >
+
+                        <span class="demo-scenario-icon">
+                            🌧️
+                        </span>
+
+                        <strong>
+                            Monsoon Onset
+                        </strong>
+
+                        <small>
+                            Example onset-dominant signal
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="demo-scenario"
+                        data-demo="break"
+                    >
+
+                        <span class="demo-scenario-icon">
+                            ☀️
+                        </span>
+
+                        <strong>
+                            Monsoon Break
+                        </strong>
+
+                        <small>
+                            Example break-dominant signal
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="demo-scenario"
+                        data-demo="mixed"
+                    >
+
+                        <span class="demo-scenario-icon">
+                            🌦️
+                        </span>
+
+                        <strong>
+                            Mixed Conditions
+                        </strong>
+
+                        <small>
+                            Example mixed rainfall signals
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 REPORT / EXPORT
+                 ================================================= -->
+
+            <section
+                class="export-section"
+                id="exportSection"
+            >
+
+                <div class="export-card">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            REPORTING
+                        </span>
+
+                        <h3>
+                            Export analysis
+                        </h3>
+
+                        <p>
+                            Generate a concise summary of the selected
+                            location, forecast signals and advisory.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="reportButton"
+                    >
+                        Generate Report
+                        <span aria-hidden="true">
+                            ↓
+                        </span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROTOTYPE NOTICE
+                 ================================================= -->
+
+            <aside class="prototype-notice">
+
+                <div
+                    class="prototype-icon"
+                    aria-hidden="true"
+                >
+                    ⚠
+                </div>
+
+
+                <div class="prototype-content">
+
+                    <div class="prototype-title-row">
+
+                        <strong>
+                            Development-Stage Prototype
+                        </strong>
+
+                        <span>
+                            SIH 26086
+                        </span>
+
+                    </div>
+
+
+                    <p>
+
+                        Monsoon Guardian currently uses a 2024
+                        rainfall-derived development dataset and
+                        experimental model signals. These predictions
+                        should not be interpreted as official IMD
+                        monsoon onset or break declarations.
+
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FARMER MODE MODAL
+         ========================================================= -->
+
+    <dialog
+        class="farmer-modal"
+        id="farmerModal"
+        aria-labelledby="farmerModalTitle"
+    >
+
+        <div class="farmer-modal-card">
+
+            <div class="farmer-modal-header">
+
+                <div>
+
+                    <span class="section-kicker">
+                        FARMER MODE
+                    </span>
+
+                    <h2 id="farmerModalTitle">
+                        Your Monsoon Update
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-button"
+                    id="closeFarmerModeButton"
+                    aria-label="Close Farmer Mode"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="farmer-location-block">
+
+                <span>
+                    SELECTED AREA
+                </span>
+
+                <strong id="farmerModalLocation">
+                    —
+                </strong>
+
+                <small id="farmerModalDate">
+                    —
+                </small>
+
+            </div>
+
+
+            <div class="farmer-risk-grid">
+
+
+                <div class="farmer-risk-card onset-farmer-card">
+
+                    <span>
+                        🌧 ONSET
+                    </span>
+
+                    <strong id="farmerOnsetValue">
+                        —
+                    </strong>
+
+                    <small>
+                        Next 7 days
+                    </small>
+
+                </div>
+
+
+                <div class="farmer-risk-card break-farmer-card">
+
+                    <span>
+                        ☀ BREAK
+                    </span>
+
+                    <strong id="farmerBreakValue">
+                        —
+                    </strong>
+
+                    <small>
+                        Next 7 days
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="farmer-message-card">
+
+                <span>
+                    WHAT THIS MEANS
+                </span>
+
+                <p id="farmerModalMessage">
+
+                    Run an analysis to generate a
+                    farmer-friendly update.
+
+                </p>
+
+            </div>
+
+
+            <div class="farmer-actions-card">
+
+                <span>
+                    SUGGESTED ACTION
+                </span>
+
+                <ul id="farmerModalActions">
+
+                    <li>
+                        Awaiting model analysis
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="farmer-modal-footer">
+
+                <span id="farmerModalLanguage">
+                    English
+                </span>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="farmerModalGenerateButton"
+                >
+                    Refresh Guidance
+                </button>
+
+            </div>
+
+
+            <div class="farmer-modal-disclaimer">
+
+                Experimental decision support. Not an official weather
+                warning or official monsoon declaration.
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+
+            <div class="footer-brand">
+
+                <div
+                    class="footer-mark"
+                    aria-hidden="true"
+                >
+                    ◉
+                </div>
+
+                <div>
+
+                    <strong>
+                        Monsoon Guardian
+                    </strong>
+
+                    <span>
+                        Hyperlocal Monsoon Intelligence
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-center">
+
+                <span>
+                    SIH 26086
+                </span>
+
+                <span>
+                    •
+                </span>
+
+                <span>
+                    Problem Statement #26086
+                </span>
+
+            </div>
+
+
+            <div class="footer-right">
+
+                <span>
+                    Research Prototype
+                </span>
+
+                <span class="footer-divider">
+                    •
+                </span>
+
+                <span class="footer-online">
+
+                    <i></i>
+
+                    <span>
+                        System Online
+                    </span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+</div>
+
+
+<!-- =========================================================
+     LEAFLET JAVASCRIPT
+     ========================================================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+></script>
+
+
+<!-- =========================================================
+     APPLICATION JAVASCRIPT
+     ========================================================= -->
+
+<script
+    src="app.js"
+    defer
+></script>
+
+
 </body>
+
 </html>

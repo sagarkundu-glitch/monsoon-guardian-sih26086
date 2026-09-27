@@ -4,5 +4,11 @@ __pycache__/
 *.pyc
 data/raw/*
 !data/raw/.gitkeep
+data/climate/*
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/imd_rainfall_climate_multihorizon_2024.csv
+data/models/*
+!data/models/final_candidates/
+data/models/final_candidates/*
+!data/models/final_candidates/*.joblib
