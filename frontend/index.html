@@ -1065,6 +1065,82 @@
 
             </div>
 
+
+            <!-- =================================================
+                 LIVE WEATHER (SEPARATE FROM THE ML PREDICTIONS)
+                 ================================================= -->
+
+            <section
+                class="panel live-weather-panel"
+                id="liveWeather"
+                aria-labelledby="liveWeatherTitle"
+            >
+
+                <div class="panel-header live-weather-header">
+
+                    <div class="panel-title-group">
+
+                        <div class="panel-icon cyan-icon" aria-hidden="true">
+                            ☼
+                        </div>
+
+                        <div>
+                            <span class="panel-eyebrow">LIVE WEATHER</span>
+                            <h3 class="panel-title" id="liveWeatherTitle">Current local conditions</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="live-weather-actions">
+                        <span id="liveWeatherStatus" class="live-weather-status" aria-live="polite">Loading weather…</span>
+                        <button type="button" class="live-weather-refresh" id="liveWeatherRefresh" aria-label="Refresh live weather">
+                            Refresh
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="live-weather-body" aria-busy="true" id="liveWeatherBody">
+
+                    <div class="live-weather-grid">
+                        <article class="live-weather-metric">
+                            <span>Temperature</span>
+                            <strong id="liveWeatherTemperature">—</strong>
+                            <small>Current air temperature</small>
+                        </article>
+                        <article class="live-weather-metric">
+                            <span>Humidity</span>
+                            <strong id="liveWeatherHumidity">—</strong>
+                            <small>Relative humidity</small>
+                        </article>
+                        <article class="live-weather-metric">
+                            <span>Rain now</span>
+                            <strong id="liveWeatherRain">—</strong>
+                            <small>Recent precipitation</small>
+                        </article>
+                        <article class="live-weather-metric">
+                            <span>Wind</span>
+                            <strong id="liveWeatherWind">—</strong>
+                            <small>Near-surface wind</small>
+                        </article>
+                    </div>
+
+                    <div class="live-weather-today">
+                        <span>Today’s outlook</span>
+                        <strong id="liveWeatherToday">Waiting for weather data</strong>
+                    </div>
+
+                    <p class="live-weather-message" id="liveWeatherMessage" role="status"></p>
+
+                    <div class="live-weather-footer">
+                        <span id="liveWeatherUpdated">Live readings are separate from the prediction model; the selected point is rounded to 0.01° for the weather request.</span>
+                        <span>Source: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></span>
+                    </div>
+
+                </div>
+
+            </section>
+
         </section>
 
 
